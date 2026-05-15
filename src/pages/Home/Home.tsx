@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 import { MapPin, Phone, Clock, X, ExternalLink, Search, Sparkles } from "lucide-react";
@@ -81,6 +82,7 @@ const hospitals: Hospital[] = [
 export function Home() {
   const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   // Prevent background body page scrolling when modal is active
   useEffect(() => {
@@ -307,15 +309,14 @@ export function Home() {
 
                   {/* Actions Row */}
                   <div className="pt-2 flex items-center gap-3 w-full">
-                    <Button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 h-10 text-sm font-semibold shadow-sm rounded-xl transition-all">
-                      Book an Appointment
-                    </Button>
                     <Button 
-                      onClick={() => setSelectedHospital(null)} 
-                      variant="outline" 
-                      className="w-auto h-10 border-green-200 text-green-700 hover:bg-green-50 rounded-xl text-sm px-5 transition-all"
+                      onClick={() => {
+                        setSelectedHospital(null);
+                        navigate("/appointments");
+                      }}
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 h-10 text-sm font-semibold shadow-sm rounded-xl transition-all cursor-pointer"
                     >
-                      Close
+                      Book an Appointment
                     </Button>
                   </div>
                 </div>

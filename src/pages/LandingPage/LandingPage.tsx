@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
+import { Footer } from "../../components/layout/Footer";
 import { 
-  MapPin, Phone, ShieldCheck, Activity, Users, ArrowRight, HeartPulse, 
-  Calendar, BrainCircuit, Building2, Smartphone, ChevronDown, 
-  Star, ChevronLeft, ChevronRight, CheckCircle2, AlertCircle, HelpCircle
+  MapPin, ShieldCheck, Activity, Users, ArrowRight, HeartPulse, 
+  Calendar, BrainCircuit, Building2, Smartphone, CheckCircle2, AlertCircle
 } from "lucide-react";
 
 export interface LandingPageProps {
@@ -13,8 +13,6 @@ export interface LandingPageProps {
 
 export function LandingPage({ onLaunchApp }: LandingPageProps) {
   // 1. STATE MANAGEMENT
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [formStatus, setFormStatus] = useState<{ type: "success" | "error" | null; msg: string }>({ type: null, msg: "" });
 
@@ -58,77 +56,35 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
     }
   ]);
 
-  const [testimonials] = useState([
-    {
-      quote: "CDO MedGuide saved us so much time during an emergency. We immediately found which partner hospital specialized in cardiology and open beds.",
-      author: "Maria Santos",
-      role: "Patient Family",
-      location: "Nazareth, CDO",
-      rating: 5
-    },
-    {
-      quote: "The AI module correctly guided me to visit an orthopedist instead of a general clinic for my chronic knee issue. Booking was completed in under two minutes.",
-      author: "Juan Dela Cruz",
-      role: "App User",
-      location: "Carmen, CDO",
-      rating: 5
-    },
-    {
-      quote: "Integrating our clinical hospital panel dashboard with this infrastructure streamlined our incoming patient queues and minimized desk backlogs.",
-      author: "Dr. E. Lim, MD",
-      role: "Chief of Clinic Operations",
-      location: "Cagayan de Oro",
-      rating: 5
-    }
-  ]);
-
-  const [faqs] = useState([
-    {
-      question: "Is CDO MedGuide free to use for patients?",
-      answer: "Yes, CDO MedGuide is entirely free for patients seeking medical facility routing, department directory references, and appointment tracking channels."
-    },
-    {
-      question: "How does the AI Help feature assist me?",
-      answer: "Our artificial intelligence parsing module accepts natural language symptom notes and securely analyzes clinical pathways to match you with corresponding healthcare specializations in CDO."
-    },
-    {
-      question: "Are the appointment schedules synchronized in real-time?",
-      answer: "Yes, we work directly alongside medical centers to synchronize active clinical hours and appointment slots instantly onto your patient dashboard profile."
-    },
-    {
-      question: "How can our hospital register as a corporate partner?",
-      answer: "Institutional operators can submit a verification query directly through our contact form. Our administrative board will process your application credentials to configure your custom workspace dashboard."
-    }
-  ]);
+  const teamMembers = [
+    { name: "Marc Ariel H. Eurese", role: "Team Leader, AI Integration Specialist & Backend/Database Architecture" },
+    { name: "Janyl Sweet V. Estores", role: "Frontend, UI/UX Developer & QA Tester" },
+    { name: "Ma. Junelyn Grace N. Medina", role: "Frontend, UI/UX Developer & Documentation" },
+    { name: "Mona Dane Bonita", role: "Frontend" },
+    { name: "Larence Garilli Gamil", role: "Documentation Specialist" },
+    { name: "Raisy Gadia", role: "QA Tester & Documentation Lead" }
+  ];
 
   // 3. ACTION HANDLERS
-  const handleNextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const handlePrevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) {
-      setFormStatus({ type: "error", msg: "Please fill out all operational form fields completely." });
+      setFormStatus({ type: "error", msg: "Please fill out all form fields completely." });
       return;
     }
     if (!/\S+@\S+\.\S+/.test(formState.email)) {
-      setFormStatus({ type: "error", msg: "Please supply a valid secure email address pattern structure." });
+      setFormStatus({ type: "error", msg: "Please supply a valid secure email address." });
       return;
     }
-    setFormStatus({ type: "success", msg: "Message dispatched successfully! Our medical board will follow up shortly." });
+    
+    // Dispatch to email client
+    const subject = encodeURIComponent("CDO MedGuide Inquiry: " + formState.name);
+    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`);
+    window.location.href = `mailto:eurese.marc.ariel@gmail.com?subject=${subject}&body=${body}`;
+
+    setFormStatus({ type: "success", msg: "Redirecting to your email client to send the message..." });
     setFormState({ name: "", email: "", message: "" });
   };
-
-  // Autoplay for testimonial slider animation layers
-  useEffect(() => {
-    const slideInterval = setInterval(handleNextTestimonial, 8000);
-    return () => clearInterval(slideInterval);
-  }, []);
 
   return (
     <div className="bg-stone-50 text-stone-900 min-h-screen font-sans scroll-smooth">
@@ -145,12 +101,11 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
           <a href="#about" className="hover:text-green-700 transition-colors">About Us</a>
           <a href="#services" className="hover:text-green-700 transition-colors">Our Services</a>
           <a href="#partners" className="hover:text-green-700 transition-colors">Partner Hospitals</a>
-          <a href="#testimonials" className="hover:text-green-700 transition-colors">Reviews</a>
-          <a href="#faq" className="hover:text-green-700 transition-colors">FAQ</a>
+          <a href="#team" className="hover:text-green-700 transition-colors">Our Team</a>
           <a href="#contact" className="hover:text-green-700 transition-colors">Contact</a>
         </div>
         <Button onClick={onLaunchApp} className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl text-xs px-5 h-9 transition-transform active:scale-[0.98] cursor-pointer">
-          Launch App
+          Sign In
         </Button>
       </nav>
 
@@ -172,11 +127,11 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
               <Button onClick={onLaunchApp} className="bg-green-500 hover:bg-green-600 text-stone-950 font-bold px-6 py-3 h-auto text-base rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-green-950/40 group cursor-pointer transition-all duration-200">
-                Find a Hospital Now
+                Sign In Now
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <a href="#about" className="w-full sm:w-auto">
-                <Button variant="outline" className="w-full border-green-700 text-white hover:bg-green-800/30 font-semibold px-6 py-3 h-auto text-base rounded-xl">
+                <Button variant="outline" className="w-full border-green-400 text-green-50 bg-transparent hover:bg-white hover:text-green-950 hover:border-white font-bold px-6 py-3 h-auto text-base rounded-xl transition-all shadow-sm">
                   Learn More
                 </Button>
               </a>
@@ -280,7 +235,7 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
                     </div>
                   </div>
                   <Button onClick={onLaunchApp} variant="outline" size="sm" className="w-full text-green-700 border-green-200 hover:bg-green-50 hover:border-green-300 text-xs font-bold h-9 rounded-xl cursor-pointer">
-                    View Integration Profile
+                    Sign In to View
                   </Button>
                 </CardContent>
               </Card>
@@ -289,84 +244,39 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
         </div>
       </section>
 
-      {/* NEW SECTION: USER TESTIMONIALS CAROUSEL */}
-      <section id="testimonials" className="py-20 px-6 bg-white border-t border-green-100 scroll-mt-16 overflow-hidden">
-        <div className="max-w-4xl mx-auto relative">
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-            <h2 className="text-xs font-bold text-green-600 uppercase tracking-widest">Reviews</h2>
-            <h3 className="text-3xl font-black text-stone-900 tracking-tight">Trusted by Local Residents & Medical Professionals</h3>
+      {/* NEW SECTION: OUR TEAM */}
+      <section id="team" className="py-20 px-6 bg-white border-t border-green-100 scroll-mt-16">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <h2 className="text-xs font-bold text-green-600 uppercase tracking-widest">Our Team</h2>
+            <h3 className="text-3xl font-black text-stone-900 tracking-tight">The Developers Behind CDO MedGuide</h3>
+            <p className="text-stone-600 font-medium">Developed by Computer Engineering students from the University of Science and Technology of Southern Philippines (USTP).</p>
           </div>
           
-          <div className="relative min-h-55 bg-stone-50 border border-green-100 rounded-3xl p-8 md:p-12 shadow-xs flex flex-col justify-between transition-all duration-500">
-            <div className="absolute top-6 left-6 text-green-200 text-6xl font-serif select-none pointer-events-none">“</div>
-            <p className="text-stone-700 text-base md:text-lg italic leading-relaxed relative z-10 font-medium text-center">
-              {testimonials[currentTestimonial].quote}
-            </p>
-            <div className="mt-6 flex flex-col items-center gap-2">
-              <div className="flex gap-1">
-                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-sm font-black text-green-950 mt-1">{testimonials[currentTestimonial].author}</p>
-              <p className="text-xs font-semibold text-stone-500">{testimonials[currentTestimonial].role} • <span className="text-green-600 font-bold">{testimonials[currentTestimonial].location}</span></p>
-            </div>
-          </div>
-
-          {/* Carousel Manual Slider Buttons Controls */}
-          <div className="flex items-center justify-center gap-4 mt-6">
-            <Button variant="outline" size="icon" onClick={handlePrevTestimonial} className="rounded-full border-green-200 text-green-700 hover:bg-green-50 shadow-xs h-9 w-9 cursor-pointer">
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            <div className="flex gap-1.5">
-              {testimonials.map((_, i) => (
-                <div key={i} onClick={() => setCurrentTestimonial(i)} className={`h-2 rounded-full cursor-pointer transition-all ${currentTestimonial === i ? "w-6 bg-green-600" : "w-2 bg-stone-300"}`} />
-              ))}
-            </div>
-            <Button variant="outline" size="icon" onClick={handleNextTestimonial} className="rounded-full border-green-200 text-green-700 hover:bg-green-50 shadow-xs h-9 w-9 cursor-pointer">
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* NEW SECTION: FAQ ACCORDION BLOCK */}
-      <section id="faq" className="py-20 px-6 bg-stone-50 border-t border-green-100 scroll-mt-16">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-            <h2 className="text-xs font-bold text-green-600 uppercase tracking-widest">FAQ</h2>
-            <h3 className="text-3xl font-black text-stone-900 tracking-tight">Frequently Asked Questions</h3>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, index) => {
-              const isOpen = activeFaq === index;
-              return (
-                <div key={index} className="bg-white border border-green-100/70 rounded-2xl shadow-xs overflow-hidden transition-all duration-200">
-                  <button onClick={() => setActiveFaq(isOpen ? null : index)} className="w-full flex items-center justify-between p-5 text-left font-bold text-green-950 hover:bg-green-50/40 transition-colors cursor-pointer text-sm md:text-base gap-4">
-                    <span className="flex items-center gap-2.5"><HelpCircle className="w-4 h-4 text-green-600 shrink-0" />{faq.question}</span>
-                    <ChevronDown className={`w-4 h-4 text-green-600 transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180" : ""}`} />
-                  </button>
-                  <div className={`transition-all duration-200 ease-in-out overflow-hidden ${isOpen ? "max-h-40 border-t border-green-50" : "max-h-0"}`}>
-                    <p className="p-5 text-stone-600 text-xs md:text-sm leading-relaxed bg-stone-50/30">{faq.answer}</p>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="bg-stone-50 border border-green-100 rounded-2xl p-6 text-center shadow-xs hover:shadow-md hover:border-green-300 transition-all">
+                <div className="w-16 h-16 mx-auto bg-green-100 text-green-700 rounded-full flex items-center justify-center mb-4 font-bold text-xl uppercase shadow-inner">
+                  {member.name.charAt(0)}
                 </div>
-              );
-            })}
+                <h4 className="text-lg font-bold text-green-950 mb-1">{member.name}</h4>
+                <p className="text-sm font-medium text-stone-500">{member.role}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* NEW SECTION: DYNAMIC CONTACT FORM WITH VALIDATIONS */}
-      <section id="contact" className="py-20 px-6 bg-white border-t border-green-100 scroll-mt-16">
+      {/* SECTION: DYNAMIC CONTACT FORM WITH VALIDATIONS */}
+      <section id="contact" className="py-20 px-6 bg-stone-50 border-t border-green-100 scroll-mt-16">
         <div className="max-w-lg mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-            <h2 className="text-xs font-bold text-green-600 uppercase tracking-widest">Contact</h2>
-            <h3 className="text-3xl font-black text-stone-900 tracking-tight">Connect With Us</h3>
-            <p className="text-stone-500 text-xs font-medium">Have questions or inquiries regarding corporate hospital board synchronization? Message our system managers.</p>
+            <h2 className="text-xs font-bold text-green-600 uppercase tracking-widest">Contact Us</h2>
+            <h3 className="text-3xl font-black text-stone-900 tracking-tight">Get in Touch</h3>
+            <p className="text-stone-500 text-xs font-medium">Have questions or inquiries? Message our system managers directly.</p>
           </div>
 
-          <form onSubmit={handleContactSubmit} className="space-y-4 bg-stone-50 border border-green-100 p-6 md:p-8 rounded-3xl shadow-xs">
+          <form onSubmit={handleContactSubmit} className="space-y-4 bg-white border border-green-100 p-6 md:p-8 rounded-3xl shadow-xs">
             {formStatus.type && (
               <div className={`p-4 rounded-xl flex items-center gap-3 text-xs md:text-sm font-semibold animate-in fade-in duration-200 ${formStatus.type === "success" ? "bg-green-100 text-green-800 border border-green-200" : "bg-rose-100 text-rose-800 border border-rose-200"}`}>
                 {formStatus.type === "success" ? <CheckCircle2 className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
@@ -376,17 +286,17 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
             
             <div className="space-y-1">
               <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Full Name</label>
-              <input type="text" placeholder="Your name" value={formState.name} onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))} className="w-full h-10 px-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-green-600 font-medium text-stone-900" />
+              <input type="text" placeholder="Your name" value={formState.name} onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))} className="w-full h-10 px-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-green-600 font-medium text-stone-900" />
             </div>
             
             <div className="space-y-1">
               <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Email Address</label>
-              <input type="email" placeholder="name@example.com" value={formState.email} onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))} className="w-full h-10 px-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-green-600 font-medium text-stone-900" />
+              <input type="email" placeholder="name@example.com" value={formState.email} onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))} className="w-full h-10 px-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-green-600 font-medium text-stone-900" />
             </div>
             
             <div className="space-y-1">
               <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Message Body</label>
-              <textarea rows={4} placeholder="Type your message details here..." value={formState.message} onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))} className="w-full p-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-green-600 font-medium text-stone-900 resize-none" />
+              <textarea rows={4} placeholder="Type your message details here..." value={formState.message} onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))} className="w-full p-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-hidden focus:ring-2 focus:ring-green-600 font-medium text-stone-900 resize-none" />
             </div>
 
             <Button type="submit" className="w-full h-10 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl text-sm shadow-md shadow-green-700/10 cursor-pointer pt-0.5">
@@ -396,23 +306,9 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
         </div>
       </section>
 
-      {/* FOOTER BLOCK */}
-      <footer className="bg-stone-900 text-stone-400 py-12 px-6 border-t border-stone-800 text-sm">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div className="space-y-2">
-            <div className="flex items-center justify-center md:justify-start gap-2 text-white font-bold text-base">
-              <img src="/icon.png" alt="" className="w-6 h-6 object-contain filter brightness-110" />
-              CDO MedGuide
-            </div>
-            <p className="text-stone-500 text-xs max-w-xs">Navigating healthcare pathways across Cagayan de Oro City efficiently.</p>
-          </div>
-          <div className="flex items-center gap-2 text-stone-500 text-xs font-medium">
-            <Phone className="w-4 h-4 text-green-500" />
-            Emergency Hotline Routing Support Available 24/7
-          </div>
-          <p className="text-stone-600 text-xs">&copy; {new Date().getFullYear()} CDO MedGuide. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* UNIFIED GLOBAL FOOTER */}
+      <Footer />
+      
     </div>
   );
 }
