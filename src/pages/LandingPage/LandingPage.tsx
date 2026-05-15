@@ -155,8 +155,8 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
       </nav>
 
       {/* HERO CALL-TO-ACTION FRAME */}
-      <section className="relative px-6 py-20 lg:py-32 bg-gradient-to-br from-green-950 via-green-900 to-emerald-900 text-white overflow-hidden text-center md:text-left">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#14532d_1px,transparent_1px),linear-gradient(to_bottom,#14532d_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20 animate-pulse duration-1000" />
+      <section className="relative px-6 py-20 lg:py-32 bg-linear-to-br from-green-950 via-green-900 to-emerald-900 text-white overflow-hidden text-center md:text-left">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#14532d_1px,transparent_1px),linear-gradient(to_bottom,#14532d_1px,transparent_1px)] bg-size-[3rem_3rem] opacity-20 animate-pulse duration-1000" />
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
           <div className="space-y-6 animate-in fade-in slide-in-from-left-8 duration-500">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-800/50 border border-green-700/50 text-xs font-semibold text-green-300 backdrop-blur-xs">
@@ -165,7 +165,7 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
               Your Health Journey, <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-green-100">Perfectly Guided.</span>
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-300 to-green-100">Perfectly Guided.</span>
             </h1>
             <p className="text-green-100/90 text-base md:text-lg max-w-xl leading-relaxed">
               CDO MedGuide connects citizens directly to leading healthcare facilities, specialized clinical consultants, and simplified online booking services.
@@ -271,7 +271,7 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
                     <span className="absolute top-3 left-3 bg-green-950/80 backdrop-blur-xs text-green-300 text-[10px] font-bold px-2.5 py-1 rounded-md shadow-xs tracking-wider uppercase">{hospital.tag}</span>
                   </div>
                 </CardHeader>
-                <CardContent className="p-5 flex-grow flex flex-col justify-between space-y-4">
+                <CardContent className="p-5 grow flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
                     <CardTitle className="text-base text-green-950 font-bold line-clamp-2 leading-snug">{hospital.name}</CardTitle>
                     <div className="flex items-center gap-1.5 text-stone-500">
@@ -297,7 +297,7 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
             <h3 className="text-3xl font-black text-stone-900 tracking-tight">Trusted by Local Residents & Medical Professionals</h3>
           </div>
           
-          <div className="relative min-h-[220px] bg-stone-50 border border-green-100 rounded-3xl p-8 md:p-12 shadow-xs flex flex-col justify-between transition-all duration-500">
+          <div className="relative min-h-55 bg-stone-50 border border-green-100 rounded-3xl p-8 md:p-12 shadow-xs flex flex-col justify-between transition-all duration-500">
             <div className="absolute top-6 left-6 text-green-200 text-6xl font-serif select-none pointer-events-none">“</div>
             <p className="text-stone-700 text-base md:text-lg italic leading-relaxed relative z-10 font-medium text-center">
               {testimonials[currentTestimonial].quote}
@@ -410,8 +410,7 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
             <Phone className="w-4 h-4 text-green-500" />
             Emergency Hotline Routing Support Available 24/7
           </div>
-          <p className="text-stone-600 text-xs">&copy; {new Date().getFullYear
-()} CDO MedGuide. All rights reserved.</p>
+          <p className="text-stone-600 text-xs">&copy; {new Date().getFullYear()} CDO MedGuide. All rights reserved.</p>
         </div>
       </footer>
     </div>

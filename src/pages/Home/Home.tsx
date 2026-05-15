@@ -104,10 +104,10 @@ export function Home() {
     <div className="space-y-8 relative min-h-screen">
       
       {/* HIGH-FIDELITY DESIGNED GREEN HERO SECTION */}
-      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-green-950 via-green-900 to-emerald-800 shadow-xl border border-green-800/30 p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-[340px]">
+      <div className="relative rounded-3xl overflow-hidden bg-linear-to-br from-green-950 via-green-900 to-emerald-800 shadow-xl border border-green-800/30 p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-85">
         
         {/* Decorative Grid Overlay Pattern Layer */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#166534_1px,transparent_1px),linear-gradient(to_bottom,#166534_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-25" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#166534_1px,transparent_1px),linear-gradient(to_bottom,#166534_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-25" />
         
         {/* Dynamic Glassmorphic Structural Background Accent Ring */}
         <div className="absolute right-[-10%] top-[-20%] w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
@@ -124,7 +124,7 @@ export function Home() {
 
           <div className="space-y-3">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight drop-shadow-xs">
-              Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-green-100">CDO MedGuide</span>
+              Welcome to <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-300 to-green-100">CDO MedGuide</span>
             </h1>
             <p className="text-green-100/90 text-sm md:text-base lg:text-lg font-medium max-w-2xl leading-relaxed">
               Your trusted medical navigation platform for Cagayan de Oro City. Find hospitals, manage clinic appointments, and query diagnostic healthcare access parameters effortlessly.
@@ -182,7 +182,7 @@ export function Home() {
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
                     />
                   </div>
-                  <CardTitle className="text-lg text-green-900 min-h-[3.5rem] line-clamp-2">{hospital.name}</CardTitle>
+                  <CardTitle className="text-lg text-green-900 min-h-14 line-clamp-2">{hospital.name}</CardTitle>
                   <CardDescription className="space-y-2 mt-3">
                     <div className="flex items-start gap-2 text-gray-600">
                       <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-green-500" />
@@ -198,7 +198,7 @@ export function Home() {
                     </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-0 flex-grow">
+                <CardContent className="pt-0 grow">
                   <div className="flex flex-wrap gap-2">
                     {hospital.specialties.map((specialty) => (
                       <span key={specialty} className="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-full border border-green-200">
@@ -249,7 +249,7 @@ export function Home() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8 items-stretch">
                 {/* Desktop Image Section */}
-                <div className="hidden md:block rounded-xl overflow-hidden shadow-inner bg-gray-100 relative min-h-[350px]">
+                <div className="hidden md:block rounded-xl overflow-hidden shadow-inner bg-gray-100 relative min-h-87.5">
                   <img src={selectedHospital.images} alt={selectedHospital.name} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
                 
@@ -274,7 +274,7 @@ export function Home() {
                       }}
                     >
                       <MapPin className="w-3.5 h-3.5 text-green-600 shrink-0 group-hover:animate-bounce transition-transform" />
-                      <span className="text-xs font-semibold max-w-[180px] sm:max-w-xs truncate underline underline-offset-2 decoration-green-300 group-hover:decoration-green-600">
+                      <span className="text-xs font-semibold max-w-45 sm:max-w-xs truncate underline underline-offset-2 decoration-green-300 group-hover:decoration-green-600">
                         {selectedHospital.address}
                       </span>
                       <ExternalLink className="w-3 h-3 text-green-500 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
