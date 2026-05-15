@@ -5,7 +5,7 @@
 ## ✨ Key Features
 
 ### For Patients
-* **🤖 AI Booking Agent:** A state-of-the-art conversational assistant powered by Google's Gemini API that triages symptoms and autonomously books hospital appointments.
+* **🤖 AI Booking Agent:** A state-of-the-art conversational assistant powered by the **OpenRouter API** (utilizing Google's Gemini with an OpenAI fallback engine) that triages symptoms and autonomously books hospital appointments.
 * **📍 Interactive Routing:** Embedded Google Maps integration to visualize travel routes and estimated times to local CDO hospitals.
 * **📂 Profile Management:** Maintain a secure medical profile tracking blood type, allergies, and medical history.
 * **🗂️ Appointment Tracking:** Separate views for Active Requests (Pending/Approved) and historical records (Completed/Declined).
@@ -20,7 +20,7 @@
 * **Frontend:** React 19, TypeScript, Vite
 * **Styling:** Tailwind CSS v4, Shadcn UI (Radix Primitives), Lucide React (Icons)
 * **Backend (BaaS):** Supabase (PostgreSQL Database, Authentication, Row Level Security)
-* **AI Integration:** Google Generative AI (`gemini-2.5-flash`)
+* **AI Integration:** OpenRouter API (`google/gemini-2.5-flash` primary, `openai/gpt-4o-mini` fallback)
 * **Routing:** React Router DOM (Client-side routing)
 * **Deployment:** Vercel (Configured for SPA routing)
 
@@ -49,13 +49,6 @@ cdo-medguide/
 
 Follow these steps to run the application locally on your machine.
 
-## 🔮 Roadmap / Future Enhancements
-- [ ] **SMS Notifications:** Implement Twilio API to send SMS updates to patients when their appointment status changes.
-- [ ] **Doctor Portal:** Add a third user role specifically for doctors to view their daily schedule.
-- [ ] **Telemedicine Integration:** Add WebRTC video call support for remote consultations.
-
----
-
 ### 1. Clone the repository
 ```bash
 git clone [https://github.com/Marcyuhhh/EC2_PIT_3B.git](https://github.com/Marcyuhhh/EC2_PIT_3B.git)
@@ -72,10 +65,12 @@ npm install
 Create a `.env` file in the root directory of the project (next to `package.json`) and add your API keys:
 
 ```env
-VITE_GEMINI_API_KEY=your_gemini_api_key_here
+VITE_OPENROUTER_API_KEY=your_openrouter_api_key_here
 VITE_SUPABASE_URL=your_supabase_url_here
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 ```
+
+*Visit documentation for API Keys*
 
 ### 4. Database Setup (Supabase)
 To run this project, your Supabase PostgreSQL database requires the following tables:
@@ -91,3 +86,35 @@ To run this project, your Supabase PostgreSQL database requires the following ta
 npm run dev
 ```
 The application will start running on http://localhost:5173.
+
+---
+
+## 🔐 Test Accounts (Hospital Dashboards)
+
+To test the hospital-side routing and dashboard management without registering a new facility, use the following pre-configured credentials:
+
+| Hospital Name | Email | Password |
+| :--- | :--- | :--- |
+| **Maria Reyna Xavier University Hospital** | `mrxuh@hospital.com` | `mrxuhhospital` |
+| **CDO Medical Center** | `cdomc@hospital.com` | `cdomchospital` |
+| **Capitol University Medical City** | `cumc@hospital.com` | `cumchospital` |
+| **Polymedic Medical Plaza** | `pmp@hospital.com` | `pmphospital` |
+| **J.R. Borja Memorial Hospital** | `jrbmh@hospital.com` | `jrbmhhospital` |
+
+---
+
+## 🔮 Roadmap / Future Enhancements
+- [ ] **SMS Notifications:** Implement Twilio API to send SMS updates to patients when their appointment status changes.
+- [ ] **Doctor Portal:** Add a third user role specifically for doctors to view their daily schedule.
+- [ ] **Telemedicine Integration:** Add WebRTC video call support for remote consultations.
+
+---
+
+## 🌐 Live Demo
+
+Check out the live deployment of the application here:
+**[👉 CDO MedGuide Live Demo](https://cdo-medguide.vercel.app/)**
+
+---
+## 📜 License
+This project is for educational purposes.
