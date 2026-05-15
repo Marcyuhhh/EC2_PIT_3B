@@ -39,19 +39,19 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
     {
       name: "Capitol University Medical City",
       location: "RN Pelaez Blvd, Cagayan de Oro",
-      image: "/hospitals/cumc.jpg",
+      image: "/cumc.jpg",
       tag: "Base Teaching Hospital"
     },
     {
       name: "Polymedic Medical Plaza",
       location: "Capistrano St, Cagayan de Oro",
-      image: "/hospitals/polymedic.jpg",
+      image: "/polymedic.jpg",
       tag: "Modern Private Plaza"
     },
     {
       name: "J.R. Borja Memorial Hospital",
       location: "Tiano Bros St, Cagayan de Oro",
-      image: "/hospitals/jr borja.jpg",
+      image: "/jr borja.jpg",
       tag: "City Public Hospital"
     }
   ]);

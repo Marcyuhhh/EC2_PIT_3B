@@ -24,6 +24,7 @@ CDO Hospitals available:
   - Maria Reyna Xavier University Hospital
   - Capitol University Medical City
   - Polymedic Medical Plaza
+  - CDO Medical Center
   - J.R. Borja Memorial Hospital
 
   BOOKING PROTOCOL (CRITICAL):

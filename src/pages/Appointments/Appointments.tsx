@@ -9,6 +9,7 @@ const CDO_HOSPITALS = [
   "Northern Mindanao Medical Center (NMMC)",
   "Maria Reyna Xavier University Hospital",
   "Capitol University Medical City",
+  "CDO Medical Center",
   "Polymedic Medical Plaza",
   "J.R. Borja Memorial Hospital"
 ];
