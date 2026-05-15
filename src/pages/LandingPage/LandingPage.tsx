@@ -61,7 +61,7 @@ export function LandingPage({ onLaunchApp }: LandingPageProps) {
     { name: "Janyl Sweet V. Estores", role: "Frontend, UI/UX Developer & QA Tester" },
     { name: "Ma. Junelyn Grace N. Medina", role: "Frontend, UI/UX Developer & Documentation" },
     { name: "Mona Dane Bonita", role: "Frontend" },
-    { name: "Larence Garilli Gamil", role: "Documentation Specialist" },
+    { name: "Larence Garelle Gamil", role: "Documentation Specialist" },
     { name: "Raisy Gadia", role: "QA Tester & Documentation Lead" }
   ];
 

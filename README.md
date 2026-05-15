@@ -26,9 +26,35 @@
 
 ---
 
+## 📁 Project Structure
+
+```text
+cdo-medguide/
+├── public/                 # Static assets (icons, background images)
+├── src/
+│   ├── components/         # Reusable UI components (Shadcn, layouts, profile)
+│   ├── lib/                # Database configurations (supabase.ts)
+│   ├── pages/              # Main route views (Home, AiHelp, HospitalDashboard, LandingPage)
+│   ├── services/           # External API logic (aiServices.ts)
+│   ├── App.tsx             # Main Traffic Controller & Routing logic
+│   └── main.tsx            # React DOM entry point
+├── .env                    # Environment variables (Ignored in Git)
+├── tailwind.config.js      # Tailwind configuration
+└── package.json            # Project dependencies
+```
+
+---
+
 ## 🚀 Setup & Installation
 
 Follow these steps to run the application locally on your machine.
+
+## 🔮 Roadmap / Future Enhancements
+- [ ] **SMS Notifications:** Implement Twilio API to send SMS updates to patients when their appointment status changes.
+- [ ] **Doctor Portal:** Add a third user role specifically for doctors to view their daily schedule.
+- [ ] **Telemedicine Integration:** Add WebRTC video call support for remote consultations.
+
+---
 
 ### 1. Clone the repository
 ```bash

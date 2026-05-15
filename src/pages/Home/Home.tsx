@@ -54,7 +54,7 @@ const hospitals: Hospital[] = [
     phone: "(088) 858-3280",
     hours: "Mon-Sat: 8:00 AM - 5:00 PM",
     specialties: ["General Medicine", "Surgery", "Diagnostics"],
-    images: "/hospitals/cumc.jpg",
+    images: "/cumc.jpg",
     description: "A state-of-the-art base teaching hospital integrated with advanced diagnostic technologies, high-capacity surgery theaters, and broad outpatient general medicine facilities."
   },
   {
@@ -64,7 +64,7 @@ const hospitals: Hospital[] = [
     phone: "(088) 857-2912",
     hours: "Mon-Sun: 8:00 AM - 8:00 PM",
     specialties: ["Family Medicine", "Dental", "Physical Therapy"],
-    images: "/hospitals/polymedic.jpg",
+    images: "/polymedic.jpg",
     description: "A premier modern medical plaza focused heavily on private continuous family medicine, personalized physical rehabilitation suites, and comprehensive preventative dental care configurations."
   },
   {
@@ -74,7 +74,7 @@ const hospitals: Hospital[] = [
     phone: "(088) 856-1011",
     hours: "24/7 Emergency",
     specialties: ["Emergency Care", "ICU", "Surgery"],
-    images: "/hospitals/jr borja.jpg",
+    images: "/jr borja.jpg",
     description: "The primary city-funded public hospital dedicated to offering subsidized healthcare services, equipped with emergency response teams, critical care icu infrastructure, and routine operational surgeries."
   },
 ];
